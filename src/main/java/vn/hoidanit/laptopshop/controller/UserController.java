@@ -29,9 +29,15 @@ public class UserController {
         return "test";
     }
 
-    // trang create User
+    // trang deatail user
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
+        return "admin/user/table-user";
+    }
+
+    // trang create User
+    @RequestMapping("/admin/user/create")
+    public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
