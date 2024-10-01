@@ -1,5 +1,7 @@
 package vn.hoidanit.laptopshop.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -32,6 +34,8 @@ public class UserController {
     // trang deatail user
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
+        List<User> users = this.userService.getAllUser();
+        model.addAttribute("user1", users);
         return "admin/user/table-user";
     }
 
@@ -47,6 +51,6 @@ public class UserController {
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
         System.out.println("RUN HERE: " + hoidanit);
         this.userService.handelSaveUser(hoidanit);
-        return "test";
+        return "redirect:/admin/user";
     }
 }
