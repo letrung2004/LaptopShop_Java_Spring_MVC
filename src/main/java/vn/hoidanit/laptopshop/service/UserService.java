@@ -24,4 +24,14 @@ public class UserService {
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
+
+    // lấy chi tiết 1 người dùng để hiển thị lên trang User detail
+    public User getUserById(long id) {
+        return userRepository.findById(id);
+    }
+
+    // xóa người dùng
+    public void deleteUserById(long id) {
+        userRepository.deleteById(id);
+    }
 }
