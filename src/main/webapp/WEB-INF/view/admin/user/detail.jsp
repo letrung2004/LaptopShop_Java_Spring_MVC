@@ -31,25 +31,23 @@
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Delete user</h3>
+                                                <h3>User detail</h3>
                                                 <!-- <a href="/admin/user/create" class="btn btn-primary">Create new user</a> -->
                                             </div>
                                             <hr />
-                                            <div class="alert alert-danger">
-                                                Are you sure to delete this user ?
+                                            <div class="card">
+                                                <div class="card-header"><b>User Information</b></div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><b>User ID:</b> ${user.id}</li>
+                                                    <li class="list-group-item"><b>User Email:</b> ${user.email}</li>
+                                                    <li class="list-group-item"><b>User Name: </b>${user.fullName}</li>
+                                                    <li class="list-group-item"><b>User Phone Number:</b> ${user.phone}
+                                                    </li>
+                                                    <li class="list-group-item"><b>User Address:</b> ${user.address}
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <form:form modelAttribute="deleteUser" method="post"
-                                                action="/admin/user/delete">
-                                                <div class="mb-3" style="display: none;">
-                                                    <label class="form-label">User ID:</label>
-                                                    <form:input type="text" class="form-control" path="id"
-                                                        value="${id}" />
-                                                </div>
-                                                <a href="/admin/user" class="btn btn-success mt-3">Back</a>
-                                                <button href="" class="btn btn-danger mt-3">Delete</button>
-                                            </form:form>
-
-
+                                            <a href="/admin/user" class="btn btn-success mt-3">Back</a>
                                         </div>
 
                                     </div>

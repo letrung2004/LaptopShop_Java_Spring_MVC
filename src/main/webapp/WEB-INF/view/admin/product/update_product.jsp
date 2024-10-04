@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>User Laptopshop</title>
+                <title>Dashboard Laptopshop</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -22,39 +22,47 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Users</h1>
+                                <h1 class="mt-4">Manage Product</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
-                                        <div class="col-12 mx-auto">
-                                            <div class="d-flex justify-content-between">
-                                                <h3>Delete user</h3>
-                                                <!-- <a href="/admin/user/create" class="btn btn-primary">Create new user</a> -->
-                                            </div>
+                                        <div class="col-md-6 col-12 mx-auto">
+                                            <h3>Update a product</h3>
                                             <hr />
-                                            <div class="alert alert-danger">
-                                                Are you sure to delete this user ?
-                                            </div>
-                                            <form:form modelAttribute="deleteUser" method="post"
-                                                action="/admin/user/delete">
+                                            <!-- da update phan product controller, va da sua 1-2 phan tren -->
+                                            <form:form method="post" action="/admin/product/update"
+                                                modelAttribute="currentProduct">
                                                 <div class="mb-3" style="display: none;">
                                                     <label class="form-label">User ID:</label>
-                                                    <form:input type="text" class="form-control" path="id"
-                                                        value="${id}" />
+                                                    <form:input type="text" class="form-control" path="id" />
                                                 </div>
-                                                <a href="/admin/user" class="btn btn-success mt-3">Back</a>
-                                                <button href="" class="btn btn-danger mt-3">Delete</button>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email address:</label>
+                                                    <form:input type="email" class="form-control" path="email"
+                                                        disabled="true" />
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Full name:</label>
+                                                    <form:input type="text" class="form-control" path="name" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Phone number:</label>
+                                                    <form:input type="text" class="form-control" path="phone" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address:</label>
+                                                    <form:input type="text" class="form-control" path="address" />
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Update</button>
                                             </form:form>
-
-
                                         </div>
-
                                     </div>
-
                                 </div>
+
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />

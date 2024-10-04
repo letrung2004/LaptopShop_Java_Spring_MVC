@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>User Laptopshop</title>
+                <title>Dashboard Laptopshop</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -22,38 +22,42 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Users</h1>
+                                <h1 class="mt-4">Manage Product</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
+                                            <!-- Day la phan tren bang -->
                                             <div class="d-flex justify-content-between">
-                                                <h3>Delete user</h3>
-                                                <!-- <a href="/admin/user/create" class="btn btn-primary">Create new user</a> -->
+                                                <!-- id in h3 is id in UserController.java line 54 -->
+                                                <h3>Users Detail</h3>
+
                                             </div>
+
                                             <hr />
-                                            <div class="alert alert-danger">
-                                                Are you sure to delete this user ?
-                                            </div>
-                                            <form:form modelAttribute="deleteUser" method="post"
-                                                action="/admin/user/delete">
-                                                <div class="mb-3" style="display: none;">
-                                                    <label class="form-label">User ID:</label>
-                                                    <form:input type="text" class="form-control" path="id"
-                                                        value="${id}" />
+                                            <div class="card" style="width: 70%;">
+                                                <div class="card-header">
+                                                    Product Information
                                                 </div>
-                                                <a href="/admin/user" class="btn btn-success mt-3">Back</a>
-                                                <button href="" class="btn btn-danger mt-3">Delete</button>
-                                            </form:form>
-
-
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">ID Product: ${product.id}</li>
+                                                    <li class="list-group-item">Product Name: ${product.proName} </li>
+                                                    <li class="list-group-item">Product Factory: ${product.factory}</li>
+                                                    <li class="list-group-item">Product Price: ${product.proPrice}</li>
+                                                    <li class="list-group-item">Quantity: ${product.quantity}</li>
+                                                    <li class="list-group-item">Detail description:
+                                                        ${product.detailDesc}</li>
+                                                    <li class="list-group-item">Short description: ${product.shortDesc}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a style="margin-top: 10px;" class="btn btn-success"
+                                                href="/admin/product">Back</a>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </main>
