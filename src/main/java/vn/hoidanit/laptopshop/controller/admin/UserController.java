@@ -32,13 +32,14 @@ public class UserController {
 
     // ----dependency injection block----
 
-    @GetMapping("/")
-    public String getHomePage(Model model) {
-        model.addAttribute("trung", "test");
-        model.addAttribute("javaspring", "from controller with model");
-        return "test";// cái return này là trả lại đường dẫn của file trong code con đường dẫn ở trên
-        // mới là đường dẫn trên localhot
-    }
+    // @GetMapping("/")
+    // public String getHomePage(Model model) {
+    // model.addAttribute("trung", "test");
+    // model.addAttribute("javaspring", "from controller with model");
+    // return "test";// cái return này là trả lại đường dẫn của file trong code con
+    // đường dẫn ở trên
+    // // mới là đường dẫn trên localhot
+    // }
 
     // trang table user
     @GetMapping("/admin/user")
