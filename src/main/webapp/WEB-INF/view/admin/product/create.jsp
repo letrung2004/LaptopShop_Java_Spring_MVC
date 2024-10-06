@@ -49,24 +49,24 @@
                                                 <!-- Add name product -->
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <c:set var="errorName">
-                                                        <form:errors path="proName" cssClass="invalid-feedback" />
+                                                        <form:errors path="name" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Name product:</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorName ? 'is-invalid':''}"
-                                                        path="proName" />
+                                                        path="name" />
                                                     ${errorName}
                                                 </div>
 
                                                 <!-- Add price product -->
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <c:set var="errorPrice">
-                                                        <form:errors path="proPrice" cssClass="invalid-feedback" />
+                                                        <form:errors path="price" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Price:</label>
                                                     <form:input type="number"
                                                         class="form-control ${not empty errorPrice ? 'is-invalid':''}"
-                                                        path="proPrice" value="0.0" step="0.01" />
+                                                        path="price" value="0.0" step="0.01" />
                                                     ${errorPrice}
                                                 </div>
 

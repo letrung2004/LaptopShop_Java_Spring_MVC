@@ -2,37 +2,46 @@ package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UserController {
     // ----dependency injection block----
     private final UserService userService;
+    private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UploadService uploadService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // ----dependency injection block----
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String getHomePage(Model model) {
         model.addAttribute("trung", "test");
         model.addAttribute("javaspring", "from controller with model");
-        return "test";
+        return "test";// cái return này là trả lại đường dẫn của file trong code con đường dẫn ở trên
+        // mới là đường dẫn trên localhot
     }
 
     // trang table user
-    @RequestMapping("/admin/user")
+    @GetMapping("/admin/user")
     public String getUserPage(Model model) {
         List<User> users = this.userService.getAllUser();
         model.addAttribute("user1", users);
@@ -40,31 +49,36 @@ public class UserController {
     }
 
     // trang create User
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
     // submit trang create User
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
-        System.out.println("RUN HERE: " + hoidanit);
+    @PostMapping("/admin/user/create")
+    public String createUserPage(Model model,
+            @ModelAttribute("newUser") User hoidanit,
+            @RequestParam("hoidanitFile") MultipartFile file) {
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
+        hoidanit.setAvatar(avatar);
+        hoidanit.setPassword(hashPassword);
+        hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
         this.userService.handelSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
 
     // trang deatail user
-    @RequestMapping("/admin/user/{id}")
+    @GetMapping("/admin/user/{id}")
     public String getDetailUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
-        return "admin/user/detail"; // cái return này là trả lại đường dẫn của file trong code con đường dẫn ở trên
-                                    // mới là đường dẫn trên localhot
+        return "admin/user/detail";
     }
 
     // trang update user
-    @RequestMapping("/admin/user/update/{id}")
+    @GetMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         User curUser = this.userService.getUserById(id);
         model.addAttribute("newUserUpdate", curUser);
@@ -72,7 +86,7 @@ public class UserController {
     }
 
     // submit trang update User
-    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
+    @PostMapping("/admin/user/update")
     public String updateUserPage(Model model, @ModelAttribute("newUserUpdate") User hoidanit) {
         User curUser = this.userService.getUserById(hoidanit.getId());
         System.out.println("RUN HERE: " + hoidanit);
@@ -87,7 +101,7 @@ public class UserController {
     }
 
     // xóa người dùng
-    @RequestMapping("/admin/user/delete/{id}")
+    @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable long id) {
         model.addAttribute("id", id);
         model.addAttribute("deleteUser", new User());
@@ -95,7 +109,7 @@ public class UserController {
     }
 
     // confirm xóa người dùng
-    @RequestMapping(value = "/admin/user/delete", method = RequestMethod.POST)
+    @PostMapping("/admin/user/delete")
     public String deleteUserPage(Model model, @ModelAttribute("deleteUser") User hoidanit) {
         this.userService.deleteUserById(hoidanit.getId());
         return "redirect:/admin/user";
