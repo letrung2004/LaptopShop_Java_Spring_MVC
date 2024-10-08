@@ -34,7 +34,7 @@
                                             <!-- Day la phan tren bang -->
                                             <div class="d-flex justify-content-between">
                                                 <!-- id in h3 is id in UserController.java line 54 -->
-                                                <h3>Users Detail</h3>
+                                                <h3>Product Detail</h3>
 
                                             </div>
 
