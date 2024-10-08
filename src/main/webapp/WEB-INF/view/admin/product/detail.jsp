@@ -22,10 +22,11 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Products</h1>
+                                <h1 class="mt-4">Manage Product</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
+                                    <li class="breadcrumb-item active">Detail Product</li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
@@ -33,23 +34,32 @@
                                             <!-- Day la phan tren bang -->
                                             <div class="d-flex justify-content-between">
                                                 <!-- id in h3 is id in UserController.java line 54 -->
-                                                <h3>Delete Product Detail</h3>
+                                                <h3>Users Detail</h3>
+
                                             </div>
 
                                             <hr />
-                                            <div class="alert alert-danger" role="alert">
-                                                Are you sure to delete this product?
+                                            <div class="card" style="width: 70%;">
+                                                <img class="card-img-top" src="/images/product/${product.image}"
+                                                    alt=" Card image cap"
+                                                    style="width: 350px; height: 250px; object-fit: cover;">
+                                                <div class="card-header">
+                                                    Product Information
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">ID Product: ${product.id}</li>
+                                                    <li class="list-group-item">Product Name: ${product.name} </li>
+                                                    <li class="list-group-item">Product Factory: ${product.factory}</li>
+                                                    <li class="list-group-item">Product Price: ${product.price}</li>
+                                                    <li class="list-group-item">Quantity: ${product.quantity}</li>
+                                                    <li class="list-group-item">Detail description:
+                                                        ${product.detailDesc}</li>
+                                                    <li class="list-group-item">Short description: ${product.shortDesc}
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div>
-                                                <form:form method="post" action="/admin/product/delete"
-                                                    modelAttribute="productDelete">
-                                                    <div class="mb-3" style="display: none;">
-                                                        <label class="form-label">Product ID:</label>
-                                                        <form:input type="text" class="form-control" path="id" />
-                                                    </div>
-                                                    <button type="submit" class="btn btn-danger">Confirm</button>
-                                                </form:form>
-                                            </div>
+                                            <a style="margin-top: 10px;" class="btn btn-success"
+                                                href="/admin/product">Back</a>
                                         </div>
                                     </div>
                                 </div>

@@ -25,6 +25,7 @@
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                 <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
+
                             </ol>
                             <div class="mt-5">
                                 <div class="row">
@@ -52,14 +53,15 @@
                                                 <c:forEach var="product" items="${product1}">
                                                     <tr>
                                                         <th>${product.id}</th>
-                                                        <td>${product.proName}</td>
-                                                        <td>${product.proPrice}</td>
+                                                        <td>${product.name}</td>
+                                                        <td>${product.price}</td>
                                                         <td>${product.factory}</td>
                                                         <td>${product.quantity}</td>
                                                         <td>
                                                             <a class="btn btn-success"
-                                                                href="/admin/product/detail_product/${product.id}">View</a>
-                                                            <a class="btn btn-warning mx-2" href="">Update</a>
+                                                                href="/admin/product/detail/${product.id}">View</a>
+                                                            <a class="btn btn-warning mx-2"
+                                                                href="/admin/product/update/${product.id}">Update</a>
                                                             <a class="btn btn-danger"
                                                                 href="/admin/product/delete/${product.id}">Delete</a>
                                                         </td>

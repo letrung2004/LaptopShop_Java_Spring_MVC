@@ -39,6 +39,7 @@
                                     <ol class="breadcrumb mb-4">
                                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                         <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
+                                        <li class="breadcrumb-item active">Create Product</li>
                                     </ol>
                                     <div class="mt-5">
                                         <div class="row">

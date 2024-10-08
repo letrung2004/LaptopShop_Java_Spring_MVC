@@ -25,7 +25,8 @@
                                 <h1 class="mt-4">Manage Users</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active"><a href="/admin/user">User</a></li>
+                                    <li class="breadcrumb-item active">Detail User</li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
@@ -36,6 +37,10 @@
                                             </div>
                                             <hr />
                                             <div class="card">
+                                                <img class="card-img-top" src="/images/avatar/${user.avatar}"
+                                                    alt="Card image cap"
+                                                    style="width: 200px; height: 200px; object-fit: cover;">
+
                                                 <div class="card-header"><b>User Information</b></div>
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item"><b>User ID:</b> ${user.id}</li>
