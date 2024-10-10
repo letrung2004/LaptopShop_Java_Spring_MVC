@@ -52,4 +52,9 @@ public class UserService {
         user.setPassword(registerDTO.getPassword());
         return user;
     }
+
+    // kiem tra email da ton tai hay chua
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
 }
