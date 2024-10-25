@@ -9,6 +9,9 @@ import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ItemController {
     private final ProductService productService;
@@ -27,9 +30,18 @@ public class ItemController {
 
     // Them san pham vao gio hang- moi lan them sp se refest lai trang chu
     @PostMapping("/add-product-to-cart/{id}")
-    public String addProductToCart(@PathVariable long id) {
-
+    public String addProductToCart(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long productId = id;
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, productId, session);
         return "redirect:/";
+    }
+
+    // Trang chi tiet gio hang
+    @GetMapping("/cart")
+    public String getCartPage(Model model) {
+        return "client/cart/show";
     }
 
 }
