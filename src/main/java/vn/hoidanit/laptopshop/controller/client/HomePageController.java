@@ -33,7 +33,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        List<Product> products = this.productService.getAllProduct();
+        List<Product> products = this.productService.fetchProducts();
         model.addAttribute("products", products);
         return "client/homepage/show";
     }

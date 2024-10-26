@@ -17,7 +17,6 @@ import vn.hoidanit.laptopshop.service.UploadService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/admin/product")
     public String getProductPage(Model model) {
-        List<Product> products = this.productService.getAllProduct();
+        List<Product> products = this.productService.fetchProducts();
         model.addAttribute("product1", products);
         return "admin/product/show";
     }
@@ -67,7 +66,7 @@ public class ProductController {
         }
 
         System.out.println("run here" + data);
-        this.productService.handleSaveProduct(data);
+        this.productService.createProduct(data);
         return "redirect:/admin/product";
     }
 
@@ -84,7 +83,7 @@ public class ProductController {
 
     @PostMapping("/admin/product/delete")
     public String postUserDelete(Model model, @ModelAttribute("productDelete") Product deleteProduct) {
-        this.productService.deleteProductById(deleteProduct.getId());
+        this.productService.deleteProduct(deleteProduct.getId());
         return "redirect:/admin/product";
     }
 
@@ -129,7 +128,7 @@ public class ProductController {
             currentProduct.setFactory(pr.getFactory());
             currentProduct.setTarget(pr.getTarget());
 
-            this.productService.handleSaveProduct(currentProduct);
+            this.productService.createProduct(currentProduct);
         }
 
         return "redirect:/admin/product";
